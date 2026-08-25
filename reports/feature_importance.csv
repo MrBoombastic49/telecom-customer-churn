@@ -1,0 +1,32 @@
+feature,importance_mean,importance_std
+Contract,0.116731,0.005767
+Number of Referrals,0.029480,0.003122
+Number of Dependents,0.012390,0.001004
+Tenure in Months,0.011203,0.002489
+Internet Service,0.007365,0.001775
+Monthly Charge,0.005752,0.001509
+Age,0.002352,0.001369
+Married,0.002255,0.000815
+Total Revenue,0.001539,0.001356
+Paperless Billing,0.001335,0.000910
+Payment Method,0.001214,0.000967
+Online Backup,0.000979,0.000190
+Total Charges,0.000880,0.000944
+Premium Tech Support,0.000855,0.000649
+Total Long Distance Charges,0.000652,0.001157
+Internet Type,0.000480,0.001150
+Population,0.000368,0.000580
+Gender,0.000317,0.000215
+Streaming TV,0.000186,0.000309
+Total Refunds,0.000067,0.000109
+Phone Service,0.000024,0.000091
+Streaming Movies,0.000004,0.000420
+Offer,-0.000075,0.000286
+Unlimited Data,-0.000079,0.000131
+Total Extra Data Charges,-0.000103,0.000113
+Device Protection Plan,-0.000104,0.000155
+Avg Monthly GB Download,-0.000128,0.000470
+Online Security,-0.000180,0.000289
+Avg Monthly Long Distance Charges,-0.000293,0.000379
+Multiple Lines,-0.000389,0.000924
+Streaming Music,-0.001248,0.000868

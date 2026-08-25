@@ -1,0 +1,4 @@
+model,cv_roc_auc_mean,cv_roc_auc_std,test_accuracy,test_balanced_accuracy,test_precision,test_recall,test_f1,test_roc_auc,test_average_precision
+random_forest,0.930256,0.009398,0.852049,0.812763,0.747922,0.721925,0.734694,0.923921,0.849643
+logistic_regression,0.915224,0.011018,0.819423,0.833579,0.632812,0.866310,0.731377,0.912311,0.803356
+dummy,0.500000,0.000000,0.716237,0.500000,0.000000,0.000000,0.000000,0.500000,0.283763

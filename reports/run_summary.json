@@ -1,0 +1,11 @@
+{
+  "source_rows": 7043,
+  "modeling_rows": 6589,
+  "churned_customers": 1869,
+  "churn_rate": 0.2836545758081651,
+  "train_rows": 5271,
+  "test_rows": 1318,
+  "feature_columns": 31,
+  "selected_model": "random_forest",
+  "selection_rule": "highest mean 5-fold ROC-AUC on the training split"
+}
