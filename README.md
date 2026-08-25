@@ -84,3 +84,99 @@ No Telnor data, credentials, institutional account details or private customer r
 ## Responsible interpretation
 
 This is a portfolio and educational project. Model scores estimate association within a public sample; they do not prove causation or justify automated decisions about real customers. Retention actions should be tested through controlled experiments and monitored for disparate impact.
+
+---
+
+<details>
+<summary><b>Español</b></summary>
+
+<br>
+
+# Abandono de clientes de telecomunicaciones — modelado sin fuga de información
+
+Análisis integral de **6,589 clientes establecidos de telecomunicaciones** para identificar el riesgo de abandono sin usar información disponible únicamente después de que un cliente se da de baja.
+
+Esta es una reconstrucción corregida y reproducible de un proyecto académico de **Aaron Fernández Pinto López**. Combina integración de datos, análisis exploratorio, preprocesamiento, comparación de modelos y evaluación orientada al negocio.
+
+## Por qué importa esta reconstrucción
+
+El primer notebook académico mezclaba el estado del cliente de tres clases con una tarea de clasificación binaria y conservaba variables derivadas del resultado. Eso produjo métricas optimistas que no se generalizarían a un flujo real de retención.
+
+Esta versión corrige la metodología:
+
+- define el abandono explícitamente como `Customer Status == "Churned"`;
+- compara únicamente clientes establecidos (`Stayed` frente a `Churned`) y excluye 454 clientes recién incorporados;
+- elimina `Customer Status`, `Churn Category` y `Churn Reason` de los predictores;
+- elimina identificadores directos y campos de ubicación de alta cardinalidad;
+- integra la población por código postal como característica de enriquecimiento reproducible;
+- ajusta imputadores, escalado y codificación one-hot dentro de cada fold de entrenamiento;
+- selecciona el modelo final usando ROC-AUC de cinco folds sobre la división de entrenamiento;
+- reporta métricas de hold-out intactas, una matriz de confusión e importancia por permutación.
+
+## Estructura del proyecto
+
+```text
+data/raw/                  Archivos CSV de dominio público de Maven Analytics
+src/churn_pipeline.py      Pipeline reproducible de entrenamiento y reportes
+tests/                     Pruebas de contrato de datos y fuga de información
+reports/                   Métricas y visualizaciones generadas
+DATA_SOURCE.md             Nota de atribución y licencia
+```
+
+## Ejecución local
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+pytest
+python -m src.churn_pipeline
+```
+
+El pipeline escribe los siguientes artefactos en `reports/`:
+
+- `metrics.csv`
+- `run_summary.json`
+- `feature_importance.csv`
+- `roc_curves.png`
+- `confusion_matrix.png`
+- `feature_importance.png`
+- `churn_by_contract.png`
+
+El artefacto entrenado `joblib` se genera localmente y se excluye intencionalmente de Git.
+
+## Resultados verificados
+
+La ejecución reproducible usa 5,271 filas de entrenamiento y un conjunto de prueba estratificado e intacto de 1,318 clientes.
+
+| Modelo | ROC-AUC CV | ROC-AUC de prueba | Precisión | Recall | F1 |
+|---|---:|---:|---:|---:|---:|
+| Random Forest | 0.930 | 0.924 | 0.748 | 0.722 | 0.735 |
+| Regresión Logística | 0.915 | 0.912 | 0.633 | 0.866 | 0.731 |
+| Baseline previo | 0.500 | 0.500 | 0.000 | 0.000 | 0.000 |
+
+Random Forest gana según la regla predefinida de validación cruzada y ofrece la discriminación general más fuerte. La Regresión Logística encuentra más clientes que abandonan con el umbral predeterminado, lo que ilustra el intercambio operativo entre recall y alertas falsas.
+
+![Curvas ROC](reports/roc_curves.png)
+
+![Importancia por permutación](reports/feature_importance.png)
+
+## Hallazgos de negocio
+
+- Los clientes mes a mes muestran una tasa de abandono de **51.7%**, frente a **10.9%** en contratos de un año y **2.6%** en contratos de dos años.
+- El tipo de contrato es la característica dominante en importancia por permutación, seguido de referidos, dependientes, antigüedad, servicio de internet y cargo mensual.
+- Estas son asociaciones predictivas, no efectos causales. Un equipo de retención debería probar incentivos de contrato e intervenciones de incorporación mediante experimentos controlados.
+
+![Tasa de abandono por contrato](reports/churn_by_contract.png)
+
+## Datos
+
+Los datos describen una empresa ficticia de telecomunicaciones y 7,043 clientes de California. Maven Analytics clasifica los datos como **Public Domain** y atribuye su fuente a IBM Cognos Analytics. Consulta [DATA_SOURCE.md](DATA_SOURCE.md).
+
+En este repositorio no se utilizan datos de Telnor, credenciales, detalles de cuentas institucionales ni registros privados de clientes.
+
+## Interpretación responsable
+
+Este es un proyecto educativo y de portafolio. Las puntuaciones de los modelos estiman asociaciones dentro de una muestra pública; no demuestran causalidad ni justifican decisiones automatizadas sobre clientes reales. Las acciones de retención deben probarse mediante experimentos controlados y monitorearse para detectar impactos desiguales.
+
+</details>
