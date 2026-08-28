@@ -1,4 +1,4 @@
-# Telecom Customer Churn — leakage-safe modeling
+# Telecom Customer Churn: leakage-safe modeling
 
 End-to-end analysis of **6,589 established telecom customers** to identify churn risk without using information that becomes available only after a customer leaves.
 
@@ -92,7 +92,7 @@ This is a portfolio and educational project. Model scores estimate association w
 
 <br>
 
-# Abandono de clientes de telecomunicaciones — modelado sin fuga de información
+# Abandono de clientes de telecomunicaciones: modelado sin fuga de información
 
 Análisis integral de **6,589 clientes establecidos de telecomunicaciones** para identificar el riesgo de abandono sin usar información disponible únicamente después de que un cliente se da de baja.
 
